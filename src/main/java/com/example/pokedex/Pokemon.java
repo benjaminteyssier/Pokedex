@@ -1,7 +1,7 @@
 package com.example.pokedex;
 
 /**
- * This class represents a pokemon and its attribute
+ * This class represents a pokemon and its attributes
  *
  * @author Benjamin Teyssier
  */
