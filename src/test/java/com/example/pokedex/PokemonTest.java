@@ -12,8 +12,8 @@ public class PokemonTest {
     HTTPRequest httpRequest = new HTTPRequest(3);
 
     public PokemonTest() {
-        pokemonTest1 = new Pokemon(3, sqliteRequest);
-        pokemonTest2 = new Pokemon(3, httpRequest);
+        pokemonTest1 = new Pokemon(3, (IGetPokemonInformation) sqliteRequest);
+        pokemonTest2 = new Pokemon(3, (IGetPokemonInformation) httpRequest);
     }
 
     @Test

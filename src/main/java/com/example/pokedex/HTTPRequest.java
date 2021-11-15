@@ -11,11 +11,20 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
+
+
+/** Represents an HTTP request to the PokemonApi to get pokemon's information
+ * @author Benjamin Teyssier
+ */
 public class HTTPRequest implements IGetPokemonInformationWithDescription {
 
     String jsonResponse = "";
     private JSONObject pokemonInformation;
 
+    /**
+     * Create the request and store the result inside the JSON Object pokemonInformation
+     * @param pokemonNumber is the number of the pokemon we are looking for in the database
+     */
     public HTTPRequest(int pokemonNumber) {
         try {
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
@@ -42,23 +51,43 @@ public class HTTPRequest implements IGetPokemonInformationWithDescription {
         }
     }
 
+    /**
+     * Gives the name of the pokemon number : pokemonNumber
+     * @param pokemonNumber
+     * @return the name of the pokemon chosen
+     */
     @Override
     public String getName(int pokemonNumber) {
         return (String) this.pokemonInformation.get("name");
     }
 
+    /**
+     * Gives the height of the pokemon number : pokemonNumber
+     * @param pokemonNumber
+     * @return the height of the pokemon chosen
+     */
     @Override
     public Long getHeight(int pokemonNumber) {
         return (Long) this.pokemonInformation.get("height");
     }
 
+    /**
+     * Gives the weight of the pokemon number : pokemonNumber
+     * @param pokemonNumber
+     * @return the weight of the pokemon chosen
+     */
     @Override
     public Long getWeight(int pokemonNumber) {
         return (Long) this.pokemonInformation.get("weight");
     }
 
+    /**
+     *
+     * @param pokemonNumber
+     * @return an empty description because there is no description in the API currently
+     */
     @Override
-    public String getDescription(int number) {
+    public String getDescription(int pokemonNumber) {
         return "";
     }
 }

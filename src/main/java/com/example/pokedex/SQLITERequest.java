@@ -2,10 +2,18 @@ package com.example.pokedex;
 
 import java.sql.*;
 
+/** Represents an SQLite request to a database to get pokemon's information
+ * @author Benjamin Teyssier
+ */
 public class SQLITERequest implements IGetPokemonInformationWithDescription {
 
     private ResultSet rs;
 
+    /**
+     * Create the request and store the result inside a ResultSet
+     * @param pokemonNumber is the number of the pokemon we are looking for in the database
+     * @param database is the database in which we look for the information
+     */
     public SQLITERequest(int pokemonNumber, String database) {
         Connection conn = null;
         rs = null;

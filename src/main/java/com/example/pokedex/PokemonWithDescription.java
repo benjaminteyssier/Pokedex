@@ -1,5 +1,10 @@
 package com.example.pokedex;
 
+/**
+ * This class extends the basic Pokemon class and adds a description to the pokemon
+ *
+ * @author Benjamin Teyssier
+ */
 public class PokemonWithDescription extends Pokemon {
     private int number;
     private String name;
@@ -52,6 +57,9 @@ public class PokemonWithDescription extends Pokemon {
         pokemonInformation = getPokemonInformation;
     }
 
+    /**
+     * This function set all the pokemon information collected
+     */
     public void setPokemonInformation() {
         setName(pokemonInformation.getName(this.number));
         setHeight(pokemonInformation.getHeight(this.number));
@@ -59,6 +67,9 @@ public class PokemonWithDescription extends Pokemon {
         setDescription(pokemonInformation.getDescription(this.number));
     }
 
+    /**
+     * This function show the user all the pokemon information collected
+     */
     public void showPokemonInformation() {
         System.out.println("=============================");
         System.out.println("Pokémon #" + this.getNumber());

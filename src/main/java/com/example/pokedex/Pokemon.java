@@ -1,5 +1,10 @@
 package com.example.pokedex;
 
+/**
+ * This class represents a pokemon and its attribute
+ *
+ * @author Benjamin Teyssier
+ */
 public class Pokemon {
     private int number;
     private String name;
@@ -49,12 +54,19 @@ public class Pokemon {
         pokemonInformation = getPokemonInformation;
     }
 
+    /**
+     * This function set all the pokemon information collected
+     */
     public void setPokemonInformation() {
         setName(pokemonInformation.getName(this.number));
         setHeight(pokemonInformation.getHeight(this.number));
         setWeight(pokemonInformation.getWeight(this.number));
     }
 
+
+    /**
+     * This function show the user all the pokemon information collected
+     */
     public void showPokemonInformation() {
         System.out.println("=============================");
         System.out.println("Pokémon #" + this.getNumber());
