@@ -13,9 +13,9 @@ public class SQLLiteExample {
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
 
-            PreparedStatement stmt  = conn.prepareStatement("SELECT name, description FROM pokemons WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT name, description FROM pokemons WHERE id = ?");
             stmt.setInt(1, 1);
-            ResultSet rs    = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
             rs.next();
             System.out.println("Pokémon name : " + rs.getString("name"));
             System.out.println("Pokémon description : " + rs.getString("description"));

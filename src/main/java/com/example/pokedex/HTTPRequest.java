@@ -11,26 +11,26 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
-public class HTTPRequest {
+public class HTTPRequest implements IGetPokemonInformationWithDescription {
 
-    public static JSONObject getPokemonInformation(int pokemonNumber) {
-        String jsonResponse = "";
+    String jsonResponse = "";
+    private JSONObject pokemonInformation;
+
+    public HTTPRequest(int pokemonNumber) {
         try {
             CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet("https://pokeapi.co/api/v2/pokemon/"+ pokemonNumber);
+            HttpGet request = new HttpGet("https://pokeapi.co/api/v2/pokemon/" + pokemonNumber);
             request.addHeader("content-type", "application/json");
             HttpResponse result = httpClient.execute(request);
-            jsonResponse = EntityUtils.toString(result.getEntity(), "UTF-8");
+            this.jsonResponse = EntityUtils.toString(result.getEntity(), "UTF-8");
 
             JSONParser parser = new JSONParser();
-            Object resultObject = parser.parse(jsonResponse);
+            Object resultObject = parser.parse(this.jsonResponse);
             if (resultObject instanceof JSONObject) {
-                return (JSONObject)resultObject;
+                this.pokemonInformation = (JSONObject) resultObject;
             } else {
                 System.err.println("Error, we expected a JSON Object from the API");
-                return null;
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,6 +40,25 @@ public class HTTPRequest {
             System.err.println(jsonResponse);
             e.printStackTrace();
         }
-        return null;
+    }
+
+    @Override
+    public String getName(int pokemonNumber) {
+        return (String) this.pokemonInformation.get("name");
+    }
+
+    @Override
+    public Long getHeight(int pokemonNumber) {
+        return (Long) this.pokemonInformation.get("height");
+    }
+
+    @Override
+    public Long getWeight(int pokemonNumber) {
+        return (Long) this.pokemonInformation.get("weight");
+    }
+
+    @Override
+    public String getDescription(int number) {
+        return "";
     }
 }
